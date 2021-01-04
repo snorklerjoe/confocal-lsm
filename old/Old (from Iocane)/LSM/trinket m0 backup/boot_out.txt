@@ -1,0 +1,15 @@
+Adafruit CircuitPython 3.0.0 on 2018-07-09; Adafruit Trinket M0 with samd21e18
+boot.py output:
+Testing LSMtools library:
+	Importing LSMtools.py...
+	Trying Laser class...
+	Trying Movement class...
+	Hardware and LSMtools are OK!
+
+
+Laser Scanning Microscope Controller up and running!
+Open the serial REPL and type:
+
+>>> import main
+>>> main.go()
+

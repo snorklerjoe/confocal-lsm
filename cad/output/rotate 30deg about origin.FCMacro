@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+
+# Macro Begin: /home/joseph/projects/specific/LSM/V4/rotate 30deg about origin.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++
+import FreeCAD
+
+Draft.rotate([FreeCAD.ActiveDocument.Rectangle009],29.999999999999996,FreeCAD.Vector(0.0,0.0,0.0),axis=FreeCAD.Vector(0.0,0.0,1.0),copy=False)
+# Macro End: /home/joseph/projects/specific/LSM/V4/rotate 30deg about origin.FCMacro +++++++++++++++++++++++++++++++++++++++++++++++++

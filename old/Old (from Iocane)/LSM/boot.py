@@ -1,0 +1,28 @@
+import time
+try:
+	print("Testing LSMtools library:")
+	print("	Importing main.py...")
+	import main
+	print("	Testing Tools...")
+	LSMtools=main.Tools()
+	print("	Trying Laser class...")
+	l=LSMtools.Laser()
+	l.laser_on()
+	time.sleep(1)
+	l.laser_off()
+	l.laser_disable()
+	print("	Trying Moveent class...")
+	m=LSMtools.Move()
+	m.scan(50, 0.5)
+	m.home()
+	print("	Hardware and LSMtools are OK!")
+except:
+	print("FAILED: LSMtools malfunction!")
+print("")
+print("")
+print("Laser Scanning Microscope Controller up and running!")
+print("Open the serial REPL and type:")
+print("")
+print(">>> import main")
+print(">>> main.go()")
+print("")

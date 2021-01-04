@@ -1,0 +1,18 @@
+
+* TLSM Vs. CLSM
+* Prototypes
+* Beam Quality
+* Safety
+* Optics inside DVD r/w head
+* X/Y/Z movement
+* Software
+* Theory of Operation
+
+APPENDIX:
+Revisions:
+ -- Prototypes 1/2/3
+ -- Lens movement
+ -- Laser/driver
+ -- Detector
+ -- Controller
+

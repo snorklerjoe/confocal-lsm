@@ -1,0 +1,17 @@
+https://www.nature.com/articles/ncomms11077
+https://blog.arduino.cc/2017/02/09/a-diy-laser-scanning-microscope/
+https://hackaday.com/2017/02/15/speakers-make-a-laser-scanning-microscope/
+https://www.allaboutcircuits.com/technical-articles/low-pass-filter-a-pwm-signal-into-an-analog-voltage/
+https://www.laserfocusworld.com/lasers-sources/article/14036821/beam-propagation-and-quality-factors-a-primer
+https://www.jameco.com/Jameco/robot/muscleqa.html
+https://www.explainthatstuff.com/cdplayers.html
+https://laserpointerforums.com/threads/diy-homemade-laser-diode-driver.26339/
+http://danyk.cz/laser2.html
+https://hackaday.io/project/9068-measuring-dvd-rw-laser
+https://www.lasersafetyfacts.com/3R/
+https://www.lasersafetyfacts.com/3B/
+https://www.instructables.com/id/Arduino-Laser-Show-with-Full-XY-Control/
+https://www.koheron.com/blog/2018/10/16/understanding-the-basics-of-laser-diode-drivers
+
+http://www.ti.com/lit/ds/symlink/lf347-n.pdf
+
