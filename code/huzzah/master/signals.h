@@ -9,8 +9,11 @@
 #include <WiFiUdp.h>
 #include "Arduino.h"
 
+#define LED 14
+#define BULKSIZE 256  // Maximum number of 9-byte commands to process
+
 typedef struct Command {
-  uint8_t cmd;
+  uint16_t cmd;
   uint16_t a;
   uint16_t x;
   uint16_t y;
@@ -31,7 +34,8 @@ class SignalServer
     void (*_callbacks[64])(Command* commandToProcess);
     uint8_t _commands[64];
     int _numCommands;
-    char _packet[255];
+    char _packet[10*BULKSIZE];
+    char _resultBuf[10*BULKSIZE];
 };
 
 

@@ -22,6 +22,7 @@ class Stage
     int getY();
     void setX(int newVal);
     void setY(int newVal);
+    void setPosition(int x, int y);
   private:
     int _currentX;
     int _currentY;

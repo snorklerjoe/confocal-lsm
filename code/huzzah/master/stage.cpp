@@ -30,8 +30,16 @@ void Stage::setX(int newVal)
 
 void Stage::setY(int newVal)
 {
-	setDAC(Y_AXIS, newVal);
-	_currentY = newVal;
+  setDAC(Y_AXIS, newVal);
+  _currentY = newVal;
+}
+
+void Stage::setPosition(int x, int y)
+{
+  setDAC(X_AXIS, x);
+  setDAC(Y_AXIS, y);
+  _currentX = x;
+  _currentY = y;
 }
 
 void Stage::setDAC(int addr, int val)

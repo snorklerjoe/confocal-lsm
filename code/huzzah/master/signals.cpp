@@ -2,6 +2,7 @@
 #include "signals.h"
 
 WiFiUDP UDP;
+Command recCommand;
 
 SignalServer::SignalServer(const char * ssid, const char * pass, int localport) {
   //strcpy(_wifi_ssid, ssid);
@@ -14,6 +15,8 @@ SignalServer::SignalServer(const char * ssid, const char * pass, int localport) 
 
 void SignalServer::begin()
 {
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
   WiFi.begin(_wifi_ssid, _wifi_pass);
   // Connecting to WiFi...
   Serial.print("Connecting to ");
@@ -42,29 +45,36 @@ void SignalServer::loop()
   int packetSize = UDP.parsePacket();
   if(packetSize)
   {
-    int len = UDP.read(_packet, 255);
+    int len = UDP.read(_packet, sizeof(_packet));
     if(len > 0)
     {
       _packet[len] = '\0';
     }
-    Command* recCommand = (Command*) _packet;
-    Serial.println(recCommand->cmd);
 
-    //Command* reply = (Command*) (const char *)"E\0\0\0\0\0\0\0\0"; // = {(uint8_t) 'E', (uint16_t) 255, (uint16_t) 255, (uint16_t) 255, (uint16_t) 255};
-    //reply->cmd = 'E';
-    
-    for(int i = 0; i < _numCommands; i++)
-    {
-      if(_commands[i] == recCommand->cmd)
+    for(int i = 0; i < min(BULKSIZE*9, len); i += 10) {
+      memcpy(&recCommand, &(_packet[i]), 10);
+  
+      //Command* reply = (Command*) (const char *)"E\0\0\0\0\0\0\0\0"; // = {(uint8_t) 'E', (uint16_t) 255, (uint16_t) 255, (uint16_t) 255, (uint16_t) 255};
+      //reply->cmd = 'E';
+      
+      for(int j = 0; j < _numCommands; j++)
       {
-      (*_callbacks[i])(recCommand);
+        if(_commands[j] == recCommand.cmd)
+        {
+          digitalWrite(LED, HIGH);
+          (*_callbacks[j])(&recCommand);
+          break;
+        }
       }
+      memcpy(&_resultBuf[i], &recCommand, 10);
+      yield();
     }
-    Serial.println(recCommand->cmd);
     
     // Reply:
+    //Serial.println("Responding...");
     UDP.beginPacket(UDP.remoteIP(), UDP.remotePort());
-    UDP.write(*(char*)recCommand);
+    UDP.write(&_resultBuf[0], len);
     UDP.endPacket();
+    digitalWrite(LED, LOW);
   }
 }
