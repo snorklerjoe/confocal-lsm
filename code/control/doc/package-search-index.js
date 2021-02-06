@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.hosticlefifer.lsm_control"},{"l":"com.hosticlefifer.lsm_control.Commands"},{"l":"com.hosticlefifer.lsm_control.data_handling"}]
