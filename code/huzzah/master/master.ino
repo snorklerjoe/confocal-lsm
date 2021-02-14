@@ -17,8 +17,9 @@ IPAddress subnet(255, 255, 255, 0);
 
 Stage stage;
 SignalServer server(WIFI_SSID, WIFI_PASS, UDP_PORT);
+int currentZ = 0;
 
-int dirChange(int num1, int num2) {
+int compare(int num1, int num2) {
   if(num1 > num2) {
     return -1;
   }
@@ -30,10 +31,18 @@ int dirChange(int num1, int num2) {
 
 void setStage(Command* command)
 {
+  if(command->x > STAGE_MAX_COORD)
+    command->x = STAGE_MAX_COORD;
+  if(command->y > STAGE_MAX_COORD)
+    command->y = STAGE_MAX_COORD;
+  if(command->z > 1024)
+    command->z = 1024;
   unsigned long startOfCommand = millis();
-  while(stage.getX() != command->x || stage.getY() != command->y) {
+  while(stage.getX() != command->x || stage.getY() != command->y || currentZ != command->z) {
     unsigned long start = micros();
-    stage.setPosition(stage.getX()+dirChange(stage.getX(), command->x), stage.getY()+dirChange(stage.getY(), command->y));
+    stage.setPosition(stage.getX()+compare(stage.getX(), command->x), stage.getY()+compare(stage.getY(), command->y));
+    currentZ += compare(currentZ, command->z);
+    analogWrite(15, currentZ);
     while((micros() - start) < (unsigned long)command->a)  // Accurate time wait
       delayMicroseconds(TIME_PRECISION_US);
     if(millis()-startOfCommand > 500) {                    // Don't let the thing crash...
@@ -48,8 +57,9 @@ void setStage(Command* command)
 void rapidSetStage(Command* command)
 {
   stage.setPosition(command->x, command->y);
+  currentZ = command->z;
+  analogWrite(15, command->z);
   command->cmd = 'A';
-  command->z = 0;
 }
 
 void readADC(Command* command)
@@ -61,6 +71,26 @@ void readADC(Command* command)
   command->cmd = 'A';
   command->x = stage.getX();
   command->y = stage.getY();
+  command->z = currentZ;
+}
+
+void setIo(Command* command)
+{
+  pinMode(command->x, OUTPUT);
+  digitalWrite(command->x, command->a);
+  command->cmd = 'A';
+  command->x = stage.getX();
+  command->y = stage.getY();
+  command->z = currentZ;
+}
+
+void pause(Command* command)
+{
+  delay(command->a);
+  command->cmd = 'A';
+  command->x = stage.getX();
+  command->y = stage.getY();
+  command->z = currentZ;
 }
 
 void setup() {
@@ -73,6 +103,8 @@ void setup() {
   server.connect('S', &setStage);
   server.connect('R', &rapidSetStage);
   server.connect('V', &readADC);
+  server.connect('O', &setIo);
+  server.connect('D', &pause);
 }
 
 void loop() {

@@ -19,11 +19,15 @@ public class Scan {
      */
     public Scan(ArrayList<DataPoint> dataPoints) {
         this.dataPoints = dataPoints;
-        scanType = dataPoints.get(0).getType();
-        for(DataPoint point : dataPoints) {
-            if(!point.getType().equals(scanType))
-                throw new IllegalArgumentException("All data points MUST be of the same type as defined in the enum DataPointType");
+        if(dataPoints.size() > 1) {
+            scanType = dataPoints.get(0).getType();
+            for (DataPoint point : dataPoints) {
+                if (!point.getType().equals(scanType))
+                    throw new IllegalArgumentException("All data points MUST be of the same type as defined in the enum DataPointType");
+            }
         }
+        else
+            scanType = null;
     }
 
     /**
@@ -34,6 +38,7 @@ public class Scan {
     }
 
     /**
+     * The method to process a Scan-- can point out contours, do focal scanning, etc.
      * @param normal The normal vector of the plane, with the size being equivalent to the distance along the normal from the origin to the plane.
      * @param tolerance The tolerance from the given plane that is allowed
      * @param number The number of points in the axis of the normal to allow (Will choose the [number]th most intense points). Set to 0 for all.
