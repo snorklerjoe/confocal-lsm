@@ -12,10 +12,10 @@ import com.hosticlefifer.lsm_control.data_handling.Scan;
 
 import java.util.ArrayList;
 
-public class ConsecutiveScanner extends SScanner {
+public class ZigZagScanner extends SScanner { // TODO: Make different from ConsecutiveScanner
     private int[] measurementIndices;
 
-    public ConsecutiveScanner(LSM microscope, int quality, boolean invert, int res, int fov, DataPointType mode, ZScanType type, int zMin, int zStep, int zMax) {
+    public ZigZagScanner(LSM microscope, int quality, boolean invert, int res, int fov, DataPointType mode, ZScanType type, int zMin, int zStep, int zMax) {
         super(microscope, quality, invert, res, fov, mode, type, zMin, zStep, zMax);
     }
 
@@ -37,27 +37,27 @@ public class ConsecutiveScanner extends SScanner {
                 for(int k = zMin; k <= zMax; k += zStep) {
                     if(invert) {
                         if(type == ZScanType.DISCRETE) {
-                            retVal.add(new SetPosition(j, i, k, 0));
+                            retVal.add(new SetPosition(j, i, k, quality));
                         } else
-                            retVal.add(new SetPosition(k, j, i, 0));
+                            retVal.add(new SetPosition(k, j, i, quality));
                     } else {
                         if (type == ZScanType.DISCRETE) {
-                            retVal.add(new SetPosition(i, j, k, 0));
+                            retVal.add(new SetPosition(i, j, k, quality));
                         } else
-                            retVal.add(new SetPosition(k, i, j, 0));
+                            retVal.add(new SetPosition(k, i, j, quality));
                     }
                     if(quality > 0) {
                         retVal.add(microscope.setLaser(true));  // Pulse the laser to improve quality
                         retVal.add(new Delay(quality));
                     }
-                    measurementIndices[count++] = retVal.size();  // Keep track of which indices are important
+                    measurementIndices[count] = retVal.size();  // Keep track of which indices are important
+                    count++;
                     retVal.add(microscope.getSensor(mode));
                     if(quality > 0)
                         retVal.add(microscope.setLaser(false));
                 }
             }
         }
-        retVal.add(microscope.setLaser(false));
         retVal.add(microscope.setLaser(false));
         return retVal;
     }

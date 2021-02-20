@@ -16,5 +16,15 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="jzy3d-snapshots" />
+      <option name="name" value="Jzy3d Snapshots" />
+      <option name="url" value="http://maven.jzy3d.org/snapshots" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jzy3d-releases" />
+      <option name="name" value="Jzy3d Releases" />
+      <option name="url" value="http://maven.jzy3d.org/releases" />
+    </remote-repository>
   </component>
 </project>

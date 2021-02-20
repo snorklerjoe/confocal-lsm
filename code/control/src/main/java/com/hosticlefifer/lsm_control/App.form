@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.hosticlefifer.lsm_control.App">
-  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="10" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="11" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="977" height="572"/>
@@ -378,7 +378,7 @@
       </grid>
       <component id="95019" class="javax.swing.JButton" binding="runButton" default-binding="true">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Cantarell Extra Bold"/>
@@ -387,7 +387,7 @@
       </component>
       <component id="89bec" class="javax.swing.JButton" binding="stopButton" default-binding="true">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font name="Cantarell Extra Bold"/>
@@ -420,7 +420,7 @@
         </constraints>
         <properties>
           <font name="Cantarell Extra Bold"/>
-          <text value="Display:"/>
+          <text value="File:"/>
         </properties>
       </component>
       <component id="a4b38" class="javax.swing.JButton" binding="openButton" default-binding="true">
@@ -437,14 +437,6 @@
         </constraints>
         <properties>
           <text value="Save"/>
-        </properties>
-      </component>
-      <component id="bab05" class="javax.swing.JButton" binding="contourButton" default-binding="true">
-        <constraints>
-          <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Contour"/>
         </properties>
       </component>
       <component id="17634" class="javax.swing.JFormattedTextField" binding="infoBox">
@@ -470,7 +462,7 @@
       </component>
       <scrollpane id="159c3" binding="scroll">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -487,7 +479,7 @@
       </scrollpane>
       <vspacer id="8c9be">
         <constraints>
-          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <minimum-size width="-1" height="10"/>
             <preferred-size width="50" height="100"/>
           </grid>
@@ -500,6 +492,31 @@
           </grid>
         </constraints>
       </hspacer>
+      <component id="f345" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Cantarell Extra Bold"/>
+          <text value="Display:"/>
+        </properties>
+      </component>
+      <component id="5b24d" class="javax.swing.JButton" binding="showButton" default-binding="true">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Show"/>
+        </properties>
+      </component>
+      <component id="36384" class="javax.swing.JCheckBox" binding="liveCheckBox" default-binding="true">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Live"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

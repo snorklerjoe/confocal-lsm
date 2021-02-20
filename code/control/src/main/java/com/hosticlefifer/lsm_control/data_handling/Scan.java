@@ -2,14 +2,14 @@ package com.hosticlefifer.lsm_control.data_handling;
 
 import com.hosticlefifer.lsm_control.ErrorDisplay;
 
-import javax.xml.crypto.Data;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * Stores a large number of data points, taken in a single scan of a single type.
  */
-public class Scan {
+public class Scan implements java.io.Serializable {
     private final ArrayList<DataPoint> dataPoints;
     private final DataPointType scanType;
 
@@ -30,11 +30,76 @@ public class Scan {
             scanType = null;
     }
 
+    public Scan() {
+        this(new ArrayList<DataPoint>());
+    }
+
+    /**
+     * Deep copies a scan
+     * @param image The image to copy (deep copy; copies DataPoints)
+     */
+    public Scan(Scan image) {
+        this();
+        for(DataPoint point : image.dataPoints)
+            dataPoints.add(new DataPoint(point));
+    }
+
     /**
      * @return The entire set of data points
      */
     public ArrayList<DataPoint> getDataPoints() {
         return dataPoints;
+    }
+
+    /**
+     * @return the type od scan
+     * @see DataPointType
+     */
+    public DataPointType getScanType() {
+        return scanType;
+    }
+
+    /**
+     * Loads a Scan object from a serialized file.
+     * @param filename Name & path to the file
+     * @return Scan object, or null if unsuccessful
+     * @see Scan(ArrayList)
+     */
+    public static Scan load(String filename) {
+        FileInputStream file;
+        try {
+            file = new FileInputStream(filename);
+            ObjectInputStream object = new ObjectInputStream(file);
+            Scan loadedScan = (Scan) object.readObject();
+            file.close();
+            object.close();
+            return loadedScan;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Saves a Scan
+     * @param filename File & path to save to
+     * @return Whether or not the save was successful
+     */
+    public boolean save(String filename) {
+        FileOutputStream file;
+        if(!filename.endsWith(".ser"))
+            filename += ".ser";
+        try {
+            file = new FileOutputStream(filename);
+            ObjectOutputStream object = new ObjectOutputStream(file);
+            object.writeObject(this);
+            file.close();
+            object.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -90,7 +155,6 @@ public class Scan {
                 }
             }
         }
-
 
         return plane;
     }
@@ -183,20 +247,12 @@ public class Scan {
         }
         return scan;
     }
-}
 
-/*                for(DataPoint point2 : plane) {
-                    if(point != point2) {
-                        boolean shouldKeep;
-                        switch(normal.getDirection()) {
-                            case X:
-                                shouldKeep = (point.getY() != point2.getY()) && (point.getZ() != point2.getZ());
-                                break;
-                            case Y:
-                                shouldKeep = (point.getX() != point2.getX()) && (point.getZ() != point2.getZ());
-                                break;
-                            case Z:
-                                shouldKeep = (point.getX() != point2.getX()) && (point.getY() != point2.getY());
-                        }
-                    }
-*/
+    /**
+     * Adds all datapoints from fromResponse to this scan
+     * @param fromResponse The scan to merge into this one.
+     */
+    public void merge(Scan fromResponse) {
+        dataPoints.addAll(fromResponse.dataPoints);
+    }
+}

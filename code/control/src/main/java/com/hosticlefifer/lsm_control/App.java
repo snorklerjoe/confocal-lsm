@@ -4,6 +4,7 @@ import com.hosticlefifer.lsm_control.Commands.Command;
 import com.hosticlefifer.lsm_control.Commands.SetPosition;
 import com.hosticlefifer.lsm_control.data_handling.DataPointType;
 import com.hosticlefifer.lsm_control.data_handling.Scan;
+import com.hosticlefifer.lsm_control.plotting.Viewer3D;
 import com.hosticlefifer.lsm_control.scanners.ConsecutiveScanner;
 import com.hosticlefifer.lsm_control.scanners.SScanner;
 import com.hosticlefifer.lsm_control.scanners.ZScanType;
@@ -16,7 +17,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.TimerTask;
 import java.util.Timer;
 
@@ -49,7 +49,6 @@ public class App {
     private JComboBox focusMode;
     private JButton openButton;
     private JButton saveButton;
-    private JButton contourButton;
     private JFormattedTextField infoBox;
     private JTextArea outputBox;
     private JPanel scanR;
@@ -58,6 +57,8 @@ public class App {
     private JPanel scanM;
     private JCheckBox listPointsCheckBox;
     private JScrollPane scroll;
+    private JButton showButton;
+    private JCheckBox liveCheckBox;
 
     private Thread scannerThread;
     private SScanner scanner;
@@ -66,6 +67,7 @@ public class App {
     private ArrayList<Command> queue;
     private Focus focus;
     private Scan image;
+    private Viewer3D viewer;
 
     final class UpdateInfo extends TimerTask {
         @Override
@@ -108,7 +110,7 @@ public class App {
                         final SpinnerModel xAxis, yAxis, resModel, zAxis, scaling, zMinModel, zMaxModel, zStepModel;
                         xAxis = new SpinnerNumberModel(0, 0, Integer.parseInt(microscope.getProperties().getProperty("maxRes")), 1);
                         yAxis = new SpinnerNumberModel(0, 0, Integer.parseInt(microscope.getProperties().getProperty("maxRes")), 1);
-                        resModel = new SpinnerNumberModel(10, 10, Integer.parseInt(microscope.getProperties().getProperty("maxRes")), 1);
+                        resModel = new SpinnerNumberModel(10, 5, Integer.parseInt(microscope.getProperties().getProperty("maxRes")), 1);
                         zAxis = new SpinnerNumberModel(0, 0, Integer.parseInt(microscope.getProperties().getProperty("maxZRes")), 1);
                         scaling = new SpinnerNumberModel(100, 1, 100, 1);
                         zMinModel = new SpinnerNumberModel(100, 0, Integer.parseInt(microscope.getProperties().getProperty("maxZRes")), 1);
@@ -204,6 +206,7 @@ public class App {
                         running = false;
                     }
                     public void run() {
+                        image = new Scan();
                         ArrayList<Response> rawData = new ArrayList<>();
                         for(int i = 0; i < queue.size(); i+=PacketCom.MAX_BULKSIZE) {  // Split up the scan into chunks that the microscope can receive in packets:
                             if(!running)
@@ -212,10 +215,16 @@ public class App {
                             if(listPointsCheckBox.isSelected())
                                 outputBox.append(rawDataChunk.toString());
                             rawData.addAll(rawDataChunk);
-                            image = scanner.fromResponse(rawData, i);
+                            image.merge(scanner.fromResponse(rawDataChunk, i));
                             outputBox.append(".");
+                            viewer.setPoints(new Scan(image));
+                            viewer.normalizeMagnitude(30);
+                            viewer.refresh();
                         }
                         if(running) {
+                            viewer.setPoints(image);
+                            viewer.normalizeMagnitude(30);
+                            viewer.refresh();
                             outputBox.append("\n\nFinished scan!");
                             setEnabledRecursive(scanM, true);
                             setEnabledRecursive(scanR, true);
@@ -228,6 +237,12 @@ public class App {
                         infoBox.setText("Connected.");
                     }
                 };
+                outputBox.append("\nOpening output window...");
+                if(viewer == null) {
+                    viewer = new Viewer3D(image, Integer.parseInt(microscope.getProperties().getProperty("maxRes")),
+                            Integer.parseInt(microscope.getProperties().getProperty("maxZRes")));
+                    viewer.show(Color.GREEN);
+                }
                 infoBox.setText("Scanning...");
                 outputBox.append("\nScanning");
                 scannerThread.start();
@@ -298,6 +313,14 @@ public class App {
                 zMin.setValue(focus.find() - distance);
                 zMax.setValue(focus.getFocalPoint() + distance);
                 microscope.request(new SetPosition(getSpinner(xPos), getSpinner(yPos), focus.getFocalPoint(), 0));
+            }
+        });
+        showButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                viewer = new Viewer3D(image, Integer.parseInt(microscope.getProperties().getProperty("maxRes")),
+                        Integer.parseInt(microscope.getProperties().getProperty("maxZRes")));
+                viewer.show(Color.GREEN);
             }
         });
     }
