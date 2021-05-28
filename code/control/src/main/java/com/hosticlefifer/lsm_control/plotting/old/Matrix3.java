@@ -1,4 +1,4 @@
-package com.hosticlefifer.lsm_control.plotting;
+package com.hosticlefifer.lsm_control.plotting.old;
 
 import com.hosticlefifer.lsm_control.data_handling.DataPoint;
 

@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="LSM-control" />
+        <module name="control" />
       </profile>
     </annotationProcessing>
   </component>

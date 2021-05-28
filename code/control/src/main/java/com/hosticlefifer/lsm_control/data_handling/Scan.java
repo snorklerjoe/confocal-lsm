@@ -5,22 +5,24 @@ import com.hosticlefifer.lsm_control.ErrorDisplay;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 
 /**
  * Stores a large number of data points, taken in a single scan of a single type.
  */
 public class Scan implements java.io.Serializable {
-    private final ArrayList<DataPoint> dataPoints;
+    private final LinkedHashMap<DataPoint> dataPoints;
     private final DataPointType scanType;
 
     /**
      * Converts an ArrayList of DataPoint's into a Scan object.
      * @param dataPoints An ArrayList of the data points collected by a scan
      */
-    public Scan(ArrayList<DataPoint> dataPoints) {
+    public Scan(LinkedHashMap<DataPoint> dataPoints) {
         this.dataPoints = dataPoints;
         if(dataPoints.size() > 1) {
-            scanType = dataPoints.get(0).getType();
+            scanType = dataPoints.0).getType();
             for (DataPoint point : dataPoints) {
                 if (!point.getType().equals(scanType))
                     throw new IllegalArgumentException("All data points MUST be of the same type as defined in the enum DataPointType");

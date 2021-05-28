@@ -1,6 +1,5 @@
-package com.hosticlefifer.lsm_control.plotting;
+package com.hosticlefifer.lsm_control.plotting.old;
 
-import com.hosticlefifer.lsm_control.data_handling.Axis;
 import com.hosticlefifer.lsm_control.data_handling.DataPoint;
 import com.hosticlefifer.lsm_control.data_handling.DataPointType;
 import com.hosticlefifer.lsm_control.data_handling.Scan;
@@ -8,7 +7,6 @@ import com.hosticlefifer.lsm_control.data_handling.Scan;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
@@ -141,7 +139,7 @@ public class Viewer3D {
                     }
                     x = transform.transform(point).getX();  // TODO: Rendering could be more efficient!
                     y = transform.transform(point).getZ()*-1;
-                    g2.fill((Ellipse2D.Double) new Ellipse2D.Double(x*Math.exp(scale)-min-xOffset[0], y*Math.exp(scale)-min-yOffset[0], point.getMeasurement(), point.getMeasurement()));
+                    g2.fill((Ellipse2D.Double) new Ellipse2D.Double(x*Math.exp(scale)-min-xOffset[0], y*Math.exp(scale)-min-yOffset[0], point.getMeasurement(), 5));
                 }
             }
         };
@@ -247,5 +245,16 @@ public class Viewer3D {
 
     public void refresh() {
         renderPanel.updateUI();
+    }
+
+    public static void main(String[] args) {
+        ArrayList<DataPoint> points = new ArrayList<>();
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 10; j++) {
+                points.add(new DataPoint(i, j, 1, (int) (Math.random() * 10), DataPointType.CONFOCAL));
+            }
+        }
+        Viewer3D viewer = new Viewer3D(points, 10, 10);
+        viewer.show(Color.RED);
     }
 }

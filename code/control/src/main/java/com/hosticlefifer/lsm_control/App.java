@@ -4,7 +4,7 @@ import com.hosticlefifer.lsm_control.Commands.Command;
 import com.hosticlefifer.lsm_control.Commands.SetPosition;
 import com.hosticlefifer.lsm_control.data_handling.DataPointType;
 import com.hosticlefifer.lsm_control.data_handling.Scan;
-import com.hosticlefifer.lsm_control.plotting.Viewer3D;
+import com.hosticlefifer.lsm_control.plotting.old.Viewer3D;
 import com.hosticlefifer.lsm_control.scanners.ConsecutiveScanner;
 import com.hosticlefifer.lsm_control.scanners.SScanner;
 import com.hosticlefifer.lsm_control.scanners.ZScanType;
