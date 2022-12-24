@@ -5,6 +5,6 @@ cad/gcode/* linguist-generated
 *.css linguist-vendored
 old/Software/gui.py linguist-generated
 old/Software/tests/BlobDetector/* linguist-vendored
-old/Old?(from?Iocane)/LSM/adafruit_hid/ linguist-vendored
 *.js linguist-vendored
 *.toc linguist-generated
+old/Old??from?Iocane?/LSM/adafruit_hid/ linguist-vendored
