@@ -1,6 +1,6 @@
 cad/gcode/* linguist-generated
 *.plt linguist-generated
-code/control/doc/* linguist-documentation
+#code/control/doc/* linguist-documentation
 *.html linguist-documentation
 *.css linguist-vendored
 *.js linguist-vendored
