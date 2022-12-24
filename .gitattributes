@@ -1,2 +1,2 @@
-*.html linguist-vendored
-*.gcode linguist-vendored
+cad/gcode/* linguist-generated
+*.html linguist-generated
