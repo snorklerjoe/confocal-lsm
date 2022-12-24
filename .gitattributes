@@ -1,2 +1,1 @@
-cad/gcode/* linguist-vendored
-code/control/doc/** linguist-vendored
+*.html linguist-vendored
