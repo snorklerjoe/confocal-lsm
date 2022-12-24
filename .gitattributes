@@ -1,5 +1,5 @@
 cad/gcode/* linguist-generated
 *.plt linguist-generated
-*.html linguist-documentation
+code/control/doc/* linguist-documentation
 *.toc linguist-generated
 confocal-lsm/old/Software/gui.py linguist-generated
