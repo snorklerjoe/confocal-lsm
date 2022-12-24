@@ -1,4 +1,5 @@
 cad/gcode/* linguist-generated
 *.plt linguist-generated
 *.html linguist-documentation
-*.toc linguist-vendored
+*.toc linguist-generated
+confocal-lsm/old/Software/gui.py linguist-generated
