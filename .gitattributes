@@ -6,4 +6,4 @@ cad/gcode/* linguist-generated
 *.js linguist-vendored
 *.toc linguist-generated
 confocal-lsm/old/Software/gui.py linguist-generated
-confocal-lsm/old/Software/tests/BlobDetector linguist-vendored
+confocal-lsm/old/Software/tests/BlobDetector/* linguist-vendored
