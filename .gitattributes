@@ -1,3 +1,4 @@
+old/Old??from?Iocane?/LSM/adafruit_hid/ linguist-vendored
 cad/gcode/* linguist-generated
 *.plt linguist-generated
 #code/control/doc/* linguist-documentation
@@ -7,4 +8,3 @@ old/Software/gui.py linguist-generated
 old/Software/tests/BlobDetector/* linguist-vendored
 *.js linguist-vendored
 *.toc linguist-generated
-old/Old??from?Iocane?/LSM/adafruit_hid/ linguist-vendored
