@@ -1,3 +1,4 @@
 cad/gcode/* linguist-generated
 *.plt linguist-generated
 *.html linguist-documentation
+*.toc linguist-vendored
