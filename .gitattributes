@@ -5,5 +5,5 @@ cad/gcode/* linguist-generated
 *.css linguist-vendored
 *.js linguist-vendored
 *.toc linguist-generated
-confocal-lsm/old/Software/gui.py linguist-generated
-confocal-lsm/old/Software/tests/BlobDetector/* linguist-vendored
+old/Software/gui.py linguist-generated
+old/Software/tests/BlobDetector/* linguist-vendored
