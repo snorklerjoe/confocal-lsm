@@ -1,7 +1,7 @@
 # confocal-lsm
 Hardware and software for my homemade laser-scanning confocal microscope
 
-![A partial scan](assets/latest_iteration.png)
+![My desk during development](assets/20210824_173049.jpg)
 
 
 ## Origins...
