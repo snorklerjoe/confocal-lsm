@@ -2,8 +2,8 @@
 #include "stage.h"
 #include "signals.h"
 
-#define WIFI_SSID "***REMOVED***"
-#define WIFI_PASS "***REMOVED***"
+#define WIFI_SSID "YOUR_SSID_HERE"
+#define WIFI_PASS "YOUR_PASSWORD_HERE"
 #define UDP_PORT  4210
 #define HOSTNAME  "LSM"
 
