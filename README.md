@@ -3,12 +3,21 @@ Hardware and software for my homemade laser-scanning confocal microscope
 
 ![My desk during development](assets/20210824_173049.jpg)
 
+_My desk during development_
+
+![The Scanning Mechanism](assets/20210217_205629.jpg)
+
+_A close-up of the scanning stage and optical head_
+
+![A picture of the breadboarded electronics](assets/breadboarded_electronics.jpg)
+
+_Breadboarded control electronics_
 
 ## Origins...
 After reading [this Instructables](https://www.instructables.com/id/Laser-Scanning-Microscope/) and [this Hackaday article](https://hackaday.com/2017/02/15/speakers-make-a-laser-scanning-microscope/),
-I thought it would be interesting to try my hand at building a laser scanning microscope from CD/DVD drive parts.
+I thought it would be interesting to try my hand at building a laser scanning microscope from CD/DVD drive parts...
 
-# Prototype Iterations:
+# Iterative Development:
 
 ## V1 (~Summer 2018)
 The first iteration scanned the specimen in the x and z axes to change its position relative to a laser beam. The diffused reflection was then measured by a usb camera and recorded into software.
@@ -55,7 +64,7 @@ I did manage to get a few reasonable images from this iteration of the microscop
 
 _A scan of the mesh from a speaker grille from a handheld radio_
 
-## V4 (2021-)
+## V4 (2021-Current)
 ### Using a Photodiode...
 For this iteration, I decided to further investigate how to measure the intensity of transmitted and/or reflected light.
 I observed the die of a photodiode used in the optical head of the CD drive under a microscope:
