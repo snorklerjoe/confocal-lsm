@@ -11,3 +11,4 @@ old/Old??from?Iocane?/LSM/trinket?m0?backup/lib/adafruit_hid/** linguist-vendore
 old/Old??from?Iocane?/LSM/adafruit_hid/** linguist-vendored
 *.toc linguist-generated
 old/Software/GUI_resource_rc.py linguist-generated
+*.spec linguist-generated
