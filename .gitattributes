@@ -4,8 +4,9 @@ cad/gcode/* linguist-generated
 *.html linguist-documentation
 *.css linguist-vendored
 old/Software/gui.py linguist-generated
-old/Software/tests/BlobDetector/* linguist-vendored
+old/Software/tests/BlobDetector/** linguist-vendored
 *.js linguist-vendored
 */adafruit_hid/* linguist-vendored
-old/Old (from Iocane)/LSM/trinket m0 backup/lib/adafruit_hid/* linguist-vendored
+old/Old??from?Iocane?/LSM/trinket?m0?backup/lib/adafruit_hid/** linguist-vendored
+old/Old??from?Iocane?/LSM/adafruit_hid/** linguist-vendored
 *.toc linguist-generated
