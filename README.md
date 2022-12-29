@@ -1,5 +1,5 @@
 # confocal-lsm
-Hardware and software for my homemade laser-scanning confocal microscope
+Hardware and software for my homemade **laser-scanning confocal microscope**
 
 ![My desk during development](assets/20210824_173049.jpg)
 
