@@ -106,4 +106,4 @@ The software was rewritten in Java, with a number of improvements, such as...
 
 ## Conclusion / Continued Work
 
-I have yet to obtain a scan from this iteration which truly represents the specimen being scanned, but further work will involve reliability improvements and reducing stiction in the stage to improve precision of the actuators in order to push closer to this goal.
+I have yet to obtain a scan from this iteration which truly represents the specimen being scanned in an obvious and clear manner, but further work will involve reliability improvements and reducing stiction in the stage to improve precision of the actuators in order to push closer to this goal.
